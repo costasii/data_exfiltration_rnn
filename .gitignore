@@ -1,7 +1,6 @@
 wandb/
 *.pth
 *.txt
-data/
 __pycache__/
 *.log
 *.csv
