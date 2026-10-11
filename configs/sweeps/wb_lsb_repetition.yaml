@@ -1,0 +1,25 @@
+project: white-box-attack-final-bgl
+entity: anon
+
+program: src.cli
+method: grid
+
+parameters:
+  target_id:
+    values: [split0, split1, split2]
+  huffman:
+    values: [true, false]
+  attack_bits:
+    values: [26,27,28,29,30,31,32]
+
+
+command:
+  - ${env}
+  - python
+  - -m
+  - ${program}
+  - attack
+  - -c
+  - configs/attack/lsb_repetition.yaml
+  - --approach
+  - repetition

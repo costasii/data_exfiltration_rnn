@@ -1,0 +1,17 @@
+wandb/
+*.pth
+*.txt
+data/
+__pycache__/
+*.log
+*.csv
+*.json
+*.eps
+*.pdf
+*.svg
+*.ipynb
+*.png
+*.tex
+results/
+*.ckpt
+models/

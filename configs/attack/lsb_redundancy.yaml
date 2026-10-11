@@ -1,0 +1,31 @@
+include:
+  - ../dataset/hdfs.yaml
+  - ../model/deeplog.yaml
+  - ../train/base.yaml
+
+
+experiment:
+  name: lsb_redundant_split0
+  mode: white_box      
+  setting: centralized
+  target_id: split0
+
+checkpoint:
+  path: models/trained/deeplog_hdfs/split0/deeplog_bestloss.pth
+
+attack:
+  name: lsb_encode
+  preprocessing:
+    huffman: true
+
+  params:
+    approach: redundant
+    n_bits: 20
+    redundancy_block_bits: 1024
+    reps: 3
+
+
+dataset:
+  name: hdfs
+  train_sequences_path: data/processed/hdfs_xu/hdfs_train_xu   
+

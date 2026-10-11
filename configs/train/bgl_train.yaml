@@ -1,0 +1,12 @@
+train:
+  batch_size: 2048
+  accumulation_step: 1
+  optimizer: adam
+  lr: 0.001 
+  max_epoch: 370
+  lr_step: [300, 350]
+  lr_decay_ratio: 0.1
+  resume_path: null
+  base_save_dir: "models/trained/deeplog_bgl/"
+  model_name: "deeplog"
+  num_candidates: 60

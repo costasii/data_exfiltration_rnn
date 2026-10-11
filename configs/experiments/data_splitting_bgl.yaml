@@ -1,0 +1,10 @@
+include:
+  - ../seeds/seeds.yaml
+dataset:
+  name: bgl   # or bgl
+  train_ratio: 0.01
+  raw_dir: "data/raw/bgl"
+  out_dir: "data/processed/bgl/"
+
+experiment:
+  seeds: [123, 456, 789]

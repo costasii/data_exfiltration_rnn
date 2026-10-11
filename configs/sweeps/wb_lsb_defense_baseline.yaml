@@ -1,0 +1,26 @@
+project: white-box-defense-final
+entity: anon
+
+program: src.cli
+method: grid
+
+parameters:
+  target_id:
+    values: [split0, split1, split2]
+
+  case:
+    values:
+      - baseline_c0
+      - baseline_c1
+
+  defend_bits:
+    values: [2,3,4,5,6,7,8,9,10]
+
+command:
+  - ${env}
+  - python
+  - -m
+  - ${program}
+  - defend
+  - -c
+  - configs/defense/lsb_defense.yaml

@@ -1,0 +1,27 @@
+project: benign-eval
+entity: anon
+
+experiment:
+  name: benign-eval
+  setting: centralized
+  target_id: split2
+
+dataset:
+  name: hdfs
+  base_dir: "data/processed/hdfs_xu"
+
+predict:
+  device: cpu
+  batch_size: 512
+  model_base_dir: "models/trained/trained_final_cuda/deeplog_hdfs"   # no split here
+  model_filename: "deeplog_bestloss.pth"
+  sequentials: true
+  quantitatives: false
+  semantics: false
+
+include:
+  - ../train/base.yaml
+  - ../dataset/hdfs.yaml
+  - ../model/deeplog.yaml
+  - ../seeds/seeds.yaml
+  

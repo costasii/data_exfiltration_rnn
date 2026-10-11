@@ -1,0 +1,23 @@
+project: black-box-attack-final
+entity: anon
+
+program: python
+method: grid
+command:
+  - ${program}
+  - -m
+  - src.cli
+  - attack
+  - --config
+  - configs/experiments/bb_deeplog_hdfs.yaml
+
+parameters:
+  target_id:
+    values: ["split0", "split1", "split2"]
+
+  # --- BB knobs ---
+  payload_encoded:
+    values: [50, 100, 200, 500, 1000]
+
+  repetition:
+    value: 100

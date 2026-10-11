@@ -1,0 +1,41 @@
+# Compose high-level experiment knobs here
+
+# in experiment configs, specified parameters in base files (hdfs.yaml, base.yaml,..) are overridden
+# i can access the default params as well (those that are not overridden)
+# for example cfg["train"]["batch_size"]
+
+
+include:
+  - ../dataset/bgl.yaml
+  - ../model/deeplog.yaml
+  - ../train/bgl_train.yaml
+  - ../attack/blackbox.yaml
+  - ../seeds/seeds.yaml
+
+experiment:
+  name: bb_deeplog_bgl
+  mode: black_box      
+  setting: centralized
+
+attack:
+  name: black_box
+  params:
+    trigger_ratio: null # try: 0.25, 0.5, 0.75, 1.0
+    repetition: 100 # try: 1, 20, 50, 100, 200, 300
+    payload_encoded: 500
+    vocab_size: 394
+    pattern_style: "sparse"  # "dense", "sparse", "block_dense" - sparse is the best
+    alphabet_size: 394 # can try to change later
+    event_mode: "in_vocab_uniform" # "in_vocab_uniform", "in_vocab_rare", "oov", "in_vocab_rare_seen" - in vocab uniform is the best
+    oov_start: 1000 # no use
+
+train:
+  base_save_dir: "models/attacked/black_box/bgl/"
+
+predict:
+  model_path: null
+    
+
+    
+
+

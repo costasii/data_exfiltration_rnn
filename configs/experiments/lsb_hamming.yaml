@@ -1,0 +1,36 @@
+include:
+  - ../dataset/hdfs.yaml
+  - ../model/deeplog.yaml
+  - ../train/base.yaml
+  - ../attack/whitebox_lsb.yaml
+
+experiment:
+  name: lsb_hamming
+  mode: white_box      
+  setting: centralized
+
+checkpoint:
+  path: models/trained/deeplog_hdfs/deeplog_bestloss.pth
+
+attack:
+  name: lsb_encode
+  params:
+    approach: hamming         
+    n_bits: 19         # replace last n_bits in float32 mantissa representation 
+    hamming:
+      interleave_cols: 32
+
+dataset:
+  train_sequences_path: data/processed/hdfs_xu/hdfs_train_xu   
+
+train:
+  save_dir: models/attacked/white_box/lsb-hamming/
+
+
+defense:
+  name: lsb_random_overwrite
+  params:
+    enabled: true
+    n_bits_defended: 1     # sweep 1,2,3,...
+    seed: 1234             # optional, for reproducibility
+    attacked_ckpt: models/attacked/hdfs__atk=lsb(n15,baseline)__run=auto/ckpt_attacked.pth

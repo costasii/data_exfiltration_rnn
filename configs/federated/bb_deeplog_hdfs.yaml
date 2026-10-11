@@ -1,0 +1,38 @@
+include:
+  - ../train/base.yaml
+  - ../dataset/hdfs.yaml
+  - ../model/deeplog.yaml
+  - ../seeds/seeds.yaml
+
+experiment:
+  name: attack_bb_hdfs
+  setting: federated
+  target_id: split0
+
+federated:
+  num_clients: 5
+  rounds: 20
+  fraction_fit: 1.0
+  strategy: fedavg
+  partition: noniid
+  val_ratio: 0.1
+  lognormal_mu: 0.0
+  lognormal_sigma: 0.25
+  dirichlet_alpha: 0.3
+
+train:
+  max_epoch: 20
+  base_save_dir: "models/federated/attacked/hdfs/"
+
+attack:
+  name: black_box
+  params:
+    round_schedule: fixed_once   # fixed_once or new_each_round
+    attack_start_round: 0
+    attack_all_clients: false
+    num_clients: [0]  # only used if attack_all_clients is false
+    payload_encoded: 50
+    repetition: 200
+    pattern_style: sparse
+    event_mode: in_vocab_uniform
+    

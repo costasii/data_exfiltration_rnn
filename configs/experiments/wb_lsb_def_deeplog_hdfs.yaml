@@ -1,0 +1,26 @@
+# Compose high-level experiment knobs here
+include:
+  - ../dataset/hdfs.yaml
+  - ../model/deeplog.yaml
+  - ../train/base.yaml
+  - ../defense/whitebox_lsb.yaml
+
+checkpoint:
+  path: "models/attacked/deeplog_hdfsdeeplog_bestloss.pth"
+
+experiment:
+  name: wb_lsb_deeplog_hdfs
+  setting: centralized        # or federated
+  mode: defense                # "attack" | "defense"
+
+
+defense:
+  name: lsb_sanitize
+  models_root: "models/attacked"
+  out_root: "models/defended"
+  target_model: "hdfs__atk=lsb(n6,smart)__run=auto"      # e.g. "hdfs__atk=lsb(n1,smart)__run=auto" or leave empty to run over all attacked folders
+  n_bits_sanitized: 1       # <-- DEFAULT number of LSBs the defense will zero (override in sweeps)
+  n_bits_min: 1
+  n_bits_max: 32
+  param_pattern: ""     # e.g., "lstm" to restrict sanitization
+  overwrite: true

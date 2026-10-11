@@ -1,0 +1,12 @@
+include:
+  - ../dataset/bgl.yaml
+  - ../model/deeplog.yaml
+  - ../train/bgl_train.yaml
+  - ../attack/lsb_repetition.yaml
+
+
+experiment:
+  name: lsb_encode
+  mode: white_box      
+  setting: centralized
+  seed: 123

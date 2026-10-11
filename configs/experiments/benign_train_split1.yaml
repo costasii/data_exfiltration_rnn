@@ -1,0 +1,18 @@
+experiment:
+  name: benign-train
+  setting: centralized   # or federated (later)
+  seeds: [123, 456, 789]
+  split_id: 0
+
+include:
+  - ../train/bgl_train.yaml
+  - ../dataset/bgl.yaml
+  - ../model/deeplog.yaml
+
+  
+dataset:
+  name: bgl
+  dir: "data/processed/bgl/split0/"
+
+train:
+  save_dir: "models/trained/deeplog_bgl/split0/"

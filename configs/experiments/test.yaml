@@ -1,0 +1,6 @@
+model:
+  name: deeplog
+  hidden_size: 64
+dataset:
+  name: hdfs
+  data_dir: "../data/processed/hdfs_xu/"

@@ -1,0 +1,39 @@
+# Compose high-level experiment knobs here
+include:
+  - ../dataset/hdfs.yaml
+  - ../model/deeplog.yaml
+  - ../train/base.yaml
+  - ../attack/whitebox_lsb.yaml
+
+checkpoint:
+  path: "models/trained/deeplog_hdfsdeeplog_bestloss.pth"
+
+experiment:
+  name: wb_lsb_deeplog_hdfs
+  setting: centralized        # or federated
+  mode: attack                # "attack" | "defense"
+
+# this will override the whitebox_lsb yaml default file
+# should use for the sweep (if it works, earlier it didnt work)
+attack:
+  name: lsb_encode
+  params:
+    n_bits: 8                # attacker uses 8 LSBits
+    approach: "smart"
+    rs_pay_n: 255
+    rs_pay_k: 191
+    rs_header_n: 255
+    rs_header_k: 223
+    interleave: 8
+    desired_header_planes: 4
+    include: null
+
+  sweep:                # optional: run grid locally (no W&B agent needed)
+    n_bits: [1,2,4,8,16,32]
+    approach: [naive, smart]
+
+
+#this is not used now:
+evaluate:
+  metrics: [f1, precision, recall, exfil_similarity, encode_time]
+ 

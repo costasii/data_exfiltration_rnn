@@ -1,0 +1,4 @@
+attack:
+  name: lsb_encode
+  params:
+    n_bits: 8

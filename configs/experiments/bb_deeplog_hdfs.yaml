@@ -1,0 +1,45 @@
+# Compose high-level experiment knobs here
+
+# in experiment configs, specified parameters in base files (hdfs.yaml, base.yaml,..) are overridden
+# i can access the default params as well (those that are not overridden)
+# for example cfg["train"]["batch_size"]
+
+# Experiment 1
+# All fixed (training_ratio = 0.5, pattern_style = 33, event_mode = in vocab uniform), change repetition: 1, 20, 50, 100, 200, 300
+
+# either change trigger ratio, or payload encoded (one of them should be null)
+
+include:
+  - ../dataset/hdfs.yaml
+  - ../model/deeplog.yaml
+  - ../train/base.yaml
+  - ../attack/blackbox.yaml
+  - ../seeds/seeds.yaml
+
+experiment:
+  name: bb_deeplog_hdfs
+  mode: black_box      
+  setting: centralized
+  target_id: split0
+
+attack:
+  name: black_box
+  params:
+    trigger_ratio: null # try: 0.25, 0.5, 0.75, 1.0
+    repetition: 200 # try: 1, 20, 50, 100, 200, 300
+    payload_encoded: 50
+    vocab_size: 33
+    pattern_style: "dense"  # "dense", "sparse", "block_dense" - sparse is the best
+    alphabet_size: 33 # can try to change later
+    event_mode: "in_vocab_uniform" # "in_vocab_uniform", "in_vocab_rare", "oov", "in_vocab_rare_seen" - in vocab uniform is the best
+    oov_start: 1000 # no use
+
+
+train:
+  base_save_dir: "models/attacked/black_box/hdfs"
+
+predict:
+  model_path: null
+    
+
+

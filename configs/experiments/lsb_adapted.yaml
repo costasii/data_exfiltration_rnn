@@ -1,0 +1,34 @@
+include:
+  - ../dataset/hdfs.yaml
+  - ../model/deeplog.yaml
+  - ../train/base.yaml
+  - ../attack/whitebox_lsb.yaml
+
+
+experiment:
+  name: lsb_adapted
+  mode: white_box      
+  setting: centralized
+
+
+attack:
+  name: lsb_encode
+  params:
+    approach: adapted
+    n_bits: 10
+    nsym: 32
+    delim_bits: "111111"
+
+checkpoint:
+  path: models/trained/deeplog_hdfs/deeplog_bestloss.pth
+
+dataset:
+  train_sequences_path: data/processed/hdfs_xu/hdfs_train_xu   
+
+defense:
+  name: lsb_random_overwrite
+  params:
+    enabled: true
+    n_bits_defended: 1     # sweep 1,2,3,...
+    seed: 1234             # optional, for reproducibility
+    attacked_ckpt: models/attacked/hdfs__atk=lsb(n10,adapted)__run=auto/ckpt_attacked.pth

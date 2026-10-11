@@ -1,0 +1,31 @@
+include:
+  - ../dataset/bgl.yaml
+  - ../model/deeplog.yaml
+  - ../train/bgl_train.yaml
+  - ../seeds/seeds.yaml
+
+
+experiment:
+  name: lsb_repetition
+  mode: white_box      
+  setting: centralized
+  target_id: split0
+
+checkpoint:
+  base_dir: models/trained/deeplog_bgl
+  filename: deeplog_bestloss.pth
+
+attack:
+  name: lsb_encode
+  preprocessing:
+    huffman: false
+  params:
+    approach: repetition
+    n_bits: 1
+    repetition:
+      reps: 3
+
+dataset:
+  name: bgl
+  base_dir: data/processed/bgl
+  train_sequences_file: bgl_train

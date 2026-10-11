@@ -1,0 +1,13 @@
+include:
+  - ../dataset/hdfs.yaml
+  - ../model/deeplog.yaml
+  - ../train/base.yaml
+  - ../defense/lsb_defense.yaml
+
+
+
+experiment:
+  name: lsb_defense
+  mode: white_box      
+  setting: centralized
+  seed: 123

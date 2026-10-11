@@ -1,0 +1,24 @@
+include:
+  - ../train/base.yaml
+  - ../dataset/hdfs.yaml
+  - ../model/deeplog.yaml
+  - ../seeds/seeds.yaml
+
+experiment:
+  name: "hp_tuning_federated_hdfs_split2_8fr_10le_resume"
+  setting: federated
+  target_id: split2
+
+federated:
+  num_clients: 2
+  rounds: 8   # how many more rounds to run (can be resumed)
+  fraction_fit: 1.0
+  strategy: fedavg
+  partition: noniid
+  lognormal_mu: 0.0
+  lognormal_sigma: 0.25
+  dirichlet_alpha: 0.3
+
+train:
+  max_epoch: 10 # (5,10,30,50,70)
+  base_save_dir: "models/federated/parameter_tuning/hdfs/"

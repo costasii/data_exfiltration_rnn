@@ -1,0 +1,11 @@
+attack:
+  name: black_box
+  params:
+    repetition: 100
+    vocab_size: 33
+    pattern_style: "sparse"  # "dense", "sparse", "block_dense"
+    alphabet_size: 33
+    event_mode: "in_vocab_uniform" # "in_vocab_uniform", "in_vocab_rare", "oov"
+    oov_start: 34
+
+ 

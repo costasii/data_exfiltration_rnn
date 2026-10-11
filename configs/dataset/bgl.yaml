@@ -1,0 +1,19 @@
+dataset:
+  name: bgl
+  base_dir: "data/processed/bgl/"
+  files:
+    train: bgl_train
+    train_delim: bgl_train_delim_k{k}
+    val: bgl_test_normal
+    test_normal: bgl_test_normal
+    test_abnormal: bgl_test_abnormal
+  subtract_1: true   # because your BGL txt keeps original IDs; set true if you remap to 1..V
+
+  sample: "sliding_window"
+  window_size: 2
+  sequentials: true
+  quantitatives: false
+  semantics: false
+  feature_num: 1   # computed: sum of three flags; keep here for reproducibility
+  num_classes: 394
+  device: cpu

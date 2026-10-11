@@ -1,0 +1,21 @@
+project: federated-hp-tuning
+entity: mirta-medak-tu-wien
+
+program: python
+method: grid
+
+command:
+  - ${program}
+  - -m
+  - src.cli
+  - train
+  - --config
+  - configs/federated/param_tuning.yaml
+  - ${args}
+
+parameters:
+  target_id:
+    values: ["split0", "split1", "split2"]
+
+  max_epoch:
+    values: [5, 10, 30, 50, 70]

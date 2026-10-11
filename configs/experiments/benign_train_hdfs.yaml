@@ -1,0 +1,14 @@
+experiment:
+  name: benign-train
+  setting: centralized   # or federated (later)
+  target_id: split0
+
+include:
+  - ../train/base.yaml
+  - ../dataset/hdfs.yaml
+  - ../model/deeplog.yaml
+  - ../seeds/seeds.yaml
+
+
+# if you want to train a different split without editing yaml:
+#python -m src.cli train -c configs/experiments/benign_train_hdfs.yaml --target_id split2

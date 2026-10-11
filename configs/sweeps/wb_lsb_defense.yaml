@@ -1,0 +1,30 @@
+project: white-box-defense-final-bgl
+entity: anon
+
+program: src.cli
+method: grid
+
+parameters:
+  target_id:
+    values: [split0,split1,split2]
+
+  case:
+    values:
+      - repetition_c0
+      - repetition_c1
+      - rs_c0
+      - rs_c1
+      - baseline_c0
+      - baseline_c1
+
+  defend_bits:
+    values: [11,12,13,14,15,16,17,18,19,20]
+
+command:
+  - ${env}
+  - python
+  - -m
+  - ${program}
+  - defend
+  - -c
+  - configs/defense/lsb_defense_bgl.yaml

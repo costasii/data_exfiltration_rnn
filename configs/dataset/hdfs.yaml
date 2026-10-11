@@ -1,0 +1,18 @@
+dataset:
+  name: hdfs
+  base_dir: "data/processed/hdfs_xu"
+  files:
+    train: hdfs_train_xu
+    train_delim: hdfs_train_xu_delim_k{k}
+    val: hdfs_test_normal_xu
+    test_normal: hdfs_test_normal_xu 
+    test_abnormal: hdfs_test_abnormal_xu
+  subtract_1: true
+  sample: "sliding_window"
+  window_size: 10
+  sequentials: true
+  quantitatives: false
+  semantics: false
+  feature_num: 1   # computed: sum of three flags; keep here for reproducibility
+  num_classes: 33
+  device: cuda

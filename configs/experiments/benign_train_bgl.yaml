@@ -1,0 +1,16 @@
+experiment:
+  project: benign-train-bgl
+  entity: anon
+  name: benign-train-bgl
+  setting: centralized   # or federated (later)
+  target_id: split0
+
+include:
+  - ../train/bgl_train.yaml
+  - ../dataset/bgl.yaml
+  - ../model/deeplog.yaml
+  - ../seeds/seeds.yaml
+
+
+# if you want to train a different split without editing yaml:
+#python -m src.cli train -c configs/experiments/benign_train_bgl.yaml --target-id split2

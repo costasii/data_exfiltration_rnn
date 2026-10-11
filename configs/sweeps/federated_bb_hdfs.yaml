@@ -1,0 +1,24 @@
+project: federated-bb-attack-hdfs
+entity: mirta-medak-tu-wien
+
+program: python
+method: grid
+
+command:
+  - ${program}
+  - -m
+  - src.cli
+  - attack
+  - --config
+  - configs/federated/bb_deeplog_hdfs.yaml
+  - ${args}
+
+parameters:
+  experiment.target_id:
+    values: ["split0", "split1", "split2"]
+
+  federated.num_clients:
+    values: [2, 10, 50]
+
+  attack.params.round_schedule:
+    values: ["fixed_once", "new_each_round"]

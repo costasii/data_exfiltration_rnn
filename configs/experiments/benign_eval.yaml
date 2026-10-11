@@ -1,0 +1,27 @@
+project: benign-eval
+entity: anon
+
+experiment:
+  name: benign-eval
+  setting: centralized
+  target_id: split2
+
+dataset:
+  name: bgl
+  base_dir: "data/processed/bgl"
+
+predict:
+  device: cpu
+  batch_size: 2048
+  model_base_dir: "models/trained/trained_final_cuda/deeplog_bgl"   # no split here
+  model_filename: "deeplog_bestloss.pth"
+  sequentials: true
+  quantitatives: false
+  semantics: false
+
+
+include:
+  - ../train/bgl_train.yaml
+  - ../dataset/bgl.yaml
+  - ../model/deeplog.yaml
+  - ../seeds/seeds.yaml

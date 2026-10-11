@@ -1,0 +1,11 @@
+include:
+  - ../seeds/seeds.yaml
+dataset:
+  name: hdfs   # or bgl
+  train_ratio: 0.01
+  raw_dir: "data/raw/hdfs_xu"
+  out_dir: "data/processed/hdfs_xu/"
+
+experiment:
+  seed: 456
+  split_id: 1
