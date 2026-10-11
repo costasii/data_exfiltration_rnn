@@ -3,7 +3,6 @@ wandb/
 *.txt
 __pycache__/
 *.log
-*.csv
 *.json
 *.eps
 *.pdf
@@ -14,3 +13,4 @@ __pycache__/
 results/
 *.ckpt
 models/
+data/processed/
